@@ -3,11 +3,12 @@
 # 🛡️ Snort3-GUI - Cyberpunk Hacker Edition
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Python-3.7+-blue.svg" alt="Python Version">
+  <img src="https://img.shields.io/github/languages/top/NguyenTienDung7749/Snort3-GUI" alt="Python">
   <img src="https://img.shields.io/badge/Platform-Ubuntu-orange.svg" alt="Platform">
-  <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License">
+  <img src="https://img.shields.io/github/license/NguyenTienDung7749/Snort3-GUI" alt="License">
   <img src="https://img.shields.io/github/stars/NguyenTienDung7749/Snort3-GUI?style=social" alt="Stars">
   <img src="https://img.shields.io/github/issues/NguyenTienDung7749/Snort3-GUI" alt="Issues">
+  <img src="https://img.shields.io/github/last-commit/NguyenTienDung7749/Snort3-GUI" alt="Last Commit">
 </p>
 
 ### 🎯 Giao diện đồ họa chuyên nghiệp cho Snort 3 IDS/IPS
@@ -144,13 +145,32 @@ sudo apt install -y build-essential libpcap-dev libpcre3-dev \
     libdumbnet-dev bison flex zlib1g-dev liblzma-dev openssl libssl-dev \
     cmake pkg-config libhwloc-dev luajit libluajit-5.1-dev
 
-# Download và cài đặt Snort 3
-# (Tham khảo tài liệu chính thức tại: https://www.snort.org/snort3)
+# Download Snort 3
+cd /tmp
+wget https://www.snort.org/downloads/snort/snort3-3.1.75.0.tar.gz
+tar -xzvf snort3-3.1.75.0.tar.gz
+cd snort3-3.1.75.0
+
+# Build và cài đặt Snort 3
+./configure_cmake.sh --prefix=/usr/local --enable-tcmalloc
+cd build
+make -j$(nproc)
+sudo make install
+
+# Verify installation
+snort -V
 ```
 
-**Hoặc sử dụng snort-manager** (nếu có sẵn):
+> **Lưu ý:** Phiên bản Snort 3 có thể thay đổi. Kiểm tra phiên bản mới nhất tại [Snort Downloads](https://www.snort.org/downloads).
+
+**Hoặc sử dụng snort-manager** (nếu có sẵn trên distro của bạn):
 ```bash
 sudo apt install snort-manager
+```
+
+**Hoặc cài đặt từ package manager** (Ubuntu 22.04+):
+```bash
+sudo apt install snort
 ```
 
 ### Bước 2: Clone Repository
@@ -278,7 +298,7 @@ Snort3-GUI/
 
 ### Chi tiết file chính
 
-#### `Snort3_GUI_.py` (600 dòng code)
+#### `Snort3_GUI_.py` (~ 600 dòng code)
 
 **Cấu trúc code:**
 
